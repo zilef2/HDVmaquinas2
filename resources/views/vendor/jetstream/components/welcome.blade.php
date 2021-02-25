@@ -15,6 +15,35 @@
     </div>
 </div>
 
+<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+    <div class="mt-8 text-2xl">Lista de usuarios</div>
+
+    <div class="mt-6 text-gray-500">
+        <livewire:tabla-maquina-alertas />
+    </div>
+</div>
+
+<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
+    <div class="mt-8 text-2xl">Lista de maquinas</div>
+
+    <div class="mt-6 text-gray-500">
+        <livewire:tabla-maquina-alertas />
+    </div>
+</div>
+
+<div>
+    ...
+
+    <div x-data="{ open: false }">
+        <button @click="open = true">Show More...</button>
+
+        <ul x-show="open" @click.away="open = false">
+            <li><button wire:click="archive">Archive</button></li>
+            <li><button wire:click="delete">Delete</button></li>
+        </ul>
+    </div>
+</div>
+
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
     <div class="p-6">
         <div class="flex items-center">

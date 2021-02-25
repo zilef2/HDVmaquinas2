@@ -1,4 +1,6 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import 'alertify.css';
+@import 'alertify.rtl.css';
 /*@import '~@fortawesome/fontawesome-free/css/all.min.css';*/

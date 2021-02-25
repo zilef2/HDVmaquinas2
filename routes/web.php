@@ -20,3 +20,22 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+
+Route::get('/foo', function () {
+    if (file_exists(public_path('storage'))){
+        return 'Ya existe';
+    }
+    app('files')->link(
+        storage_path('app/public'), public_path('storage')
+    );return 'Listo';
+});
+
+Route::get('/clear-c', function () {
+    echo Artisan::call('cache:clear');
+    echo Artisan::call('route:clear');
+    echo Artisan::call('config:clear');
+    echo Artisan::call('config:cache');
+    return " Listo papá";
+});

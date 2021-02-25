@@ -17,6 +17,18 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+
+
+{{--        del zilef--}}
+
+{{--        <script src={{URL::asset('js/alertify.js')}}></script>--}}
+
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <!-- Default theme -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,4 +55,16 @@
 
         @livewireScripts
     </body>
+
+<script>
+    alertify.confirm('Equipos próximos', 'Los siguientes equipos estan por vencerce ' +
+        '{{ config('app.name', 'Laravel') }}',
+        function(){
+        alertify.success('Ok')
+    },
+        function(){
+        alertify.error('Cancel')
+    });
+
+</script>
 </html>
