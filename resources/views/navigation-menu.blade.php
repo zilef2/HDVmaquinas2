@@ -92,6 +92,15 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
+                            @if(\Illuminate\Support\Facades\Auth::user()->is_admin>0)
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Administrador') }}
+                            </div>
+                            <x-jet-dropdown-link href="{{ route('export2') }}">
+                                {{ __('Descargar BD') }}
+                            </x-jet-dropdown-link>
+                            @endif
+
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>

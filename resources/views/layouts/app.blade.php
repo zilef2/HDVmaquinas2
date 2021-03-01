@@ -56,15 +56,4 @@
         @livewireScripts
     </body>
 
-<script>
-    alertify.confirm('Equipos próximos', 'Los siguientes equipos estan por vencerce ' +
-        '{{ config('app.name', 'Laravel') }}',
-        function(){
-        alertify.success('Ok')
-    },
-        function(){
-        alertify.error('Cancel')
-    });
-
-</script>
 </html>

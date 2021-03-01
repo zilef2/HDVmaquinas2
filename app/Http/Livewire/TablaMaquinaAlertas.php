@@ -2,86 +2,68 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
+use App\Models\Equipo;
+use App\Models\equipos_mantenimientos;
 use Carbon\Carbon;
+use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
-use Mediconesystems\LivewireDatatables\NumberColumn;
 
 class TablaMaquinaAlertas extends LivewireDatatable
 {
-    public $hideable = 'select';
-    public $SE;
-    public $hace_dias;
 
-    protected $queryString = ['SE'];
+    public $hideable = 'select';
+//    public $exportable = true;
+
 
     public function builder()
     {
-//        $this->hace_dias="hola";
-//
-//        $empresa_id=intval(session('empresa_id'));
-//
-//        if ($empresa_id!=0) {
-//
-//            $proyectos_con_avance=estado_avance::all()->pluck('proyecto_id')->toArray();
-//            return proyecto::query()
-//                ->where('empresa_id',$this->SE)
-//                ->whereIn('id',$proyectos_con_avance)
-//                ;
-//        }else{
-            return User::query()->where('id','>',0);
 
-//        }
-
+        $equiposConMatenimiento=equipos_mantenimientos::all()->pluck('equipo_id')->toArray();
+        return Equipo::query()
+            ->whereIn('id',$equiposConMatenimiento);
     }
 
     public function columns()
     {
         return [
-            Column::name('name')
+            Column::name('nombre')
                 ->label('Nombre')
                 ->filterable(),
 
-            DateColumn::name('created_at')
-                ->label('Creado en'),
+            DateColumn::name('updated_at')
+                ->label('Fecha')
+                ->hide(),
 
-//            DateColumn::name('created_at')
-//                ->label('serial'),
-//
-//            DateColumn::name('created_at')
-//                ->label('se vendio a'),
-//
-//            DateColumn::name('created_at')
-//                ->label('foto'),
-
-
-
-
-
-
-//            DateColumn::name('fecha_inicio')
-//                ->label('Fecha Inicio')
-//                ->filterable(),
-//
-//            DateColumn::name('updated_at')
-//                ->label('Ultima modificación')
-//                ->format('d/m/y g:i a')
-//                ->filterable(),
-//
             Column::callback(['updated_at'], function ($updated_at) {
                 return Carbon::createFromDate($updated_at)->diffForHumans(Carbon::now());
-            })->label('Hace cuanto'),
-//
-//            BooleanColumn::name('finalizado')
-//                ->label('finalizado')
-//                ->filterable(),
-//
-            Column::callback(['id', 'name'], function ($id, $name) {
+            })->label('Actualizado ')->hide(),
 
-                return view('livewire.admin-actions', ['id' => $id, 'name' => $name,'tabla'=>"tabla_maquina_alertas"]);
-            }),
+            Column::name('serial')
+                ->label('serial'),
+
+            Column::name('aquien_vendio')
+                ->label('se vendió a'),
+
+            BooleanColumn::name('al_dia')
+                ->label('al Día'),
+
+            DateColumn::name('fecha_ultimo_mant')
+                ->label('Ultimo mantenimiento')
+                ->format('d/m/y g:i a')
+                ->filterable()
+                ->defaultSort('asc'),
+
+
+
+            Column::callback(['id', 'nombre'], function ($id, $nombre) {
+                return view('livewire.admin-actions', ['id' => $id, 'nombre' => $nombre,'tabla'=>"HDV_Down"]);
+            })->label('HDV y descargas'),
+
+            Column::callback(['id' ], function ($id ) {
+                return view('livewire.admin-actions', ['id' => $id,'tabla'=>"programa_registrar"]);
+            })->label('Mantenimientos'),
 
 
         ];

@@ -8,41 +8,30 @@
     </div>
 
     <div class="mt-6 text-gray-500">
-        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-        ecosystem to be a breath of fresh air. We hope you love it.
+        El programa {{env('APP_NAME')}} mostrará una lista de equipos que aun no tiene registrado su primer mantenimiento.
+        una vez realizado, estara en la segunda tabla.
     </div>
 </div>
 
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-    <div class="mt-8 text-2xl">Lista de usuarios</div>
+    <div class="mt-8 text-2xl text-center">Lista de Equipos</div>
 
     <div class="mt-6 text-gray-500">
-        <livewire:tabla-maquina-alertas />
+        <livewire:tabla-lista-usuarios/>
     </div>
 </div>
 
-<div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-    <div class="mt-8 text-2xl">Lista de maquinas</div>
-
-    <div class="mt-6 text-gray-500">
-        <livewire:tabla-maquina-alertas />
-    </div>
-</div>
-
-<div>
-    ...
-
-    <div x-data="{ open: false }">
-        <button @click="open = true">Show More...</button>
-
-        <ul x-show="open" @click.away="open = false">
-            <li><button wire:click="archive">Archive</button></li>
-            <li><button wire:click="delete">Delete</button></li>
-        </ul>
-    </div>
-</div>
+{{--ocultar con x-data: x-show--}}
+{{--<div>--}}
+{{--    <div class="mt-5" x-data="{ open: false }">--}}
+{{--        <button @click="open = true">Ver lista de usuarios</button>--}}
+{{--            <div x-show="open" @click.away="open = false" class="p-6 sm:px-20 bg-white border-b border-gray-200">--}}
+{{--                <div class="mt-6 text-gray-500">--}}
+{{--                    aqui--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
     <div class="p-6">
@@ -117,3 +106,38 @@
         </div>
     </div>
 </div>
+<footer class="footer bg-blue-900 relative pt-1 border-b-2 border-blue-700">
+    <div class="container mx-auto px-6">
+
+        <div class="sm:flex sm:mt-8">
+            <div class="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-between">
+                <div class="flex flex-col">
+                    <span class="font-bold text-indigo-400 uppercase mb-2">Nombre empresa</span>
+                    <span class="my-2"><a href="#" class="text-blue-100  text-md hover:text-blue-500">link 1</a></span>
+                    <span class="my-2"><a href="#" class="text-blue-100  text-md hover:text-blue-500">link 2</a></span>
+                </div>
+{{--                <div class="flex flex-col">--}}
+{{--                    <span class="font-bold text-indigo-400 uppercase mt-4 md:mt-0 mb-2">Footer header 2</span>--}}
+{{--                    <span class="my-2"><a href="#" class="text-blue-100 text-md hover:text-blue-500">link 1</a></span>--}}
+{{--                    <span class="my-2"><a href="#" class="text-blue-100  text-md hover:text-blue-500">link 2</a></span>--}}
+{{--                </div>--}}
+                <div class="flex flex-col">
+                    <span class="font-bold text-indigo-400 uppercase mt-4 md:mt-0 mb-2">Consult-ING</span>
+                    <span class="my-2"><a href="https://www.consult-ing.com.co/index.php/industria-4-0/inteligencia-de-negocios-b-i/259-inteligencia-de-negocios-b-i" class="text-blue-100  text-md hover:text-blue-500">
+                            Inteligencia de negocios</a></span>
+                    <span class="my-2"><a href="https://www.consult-ing.com.co/index.php/industria-4-0/app-consult-ing/263-app-consult-ing" class="text-blue-100  text-md hover:text-blue-500">
+                            APP consult-ING</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto px-6">
+        <div class="mt-5 border-t-2 border-gray-300 flex flex-col items-center">
+            <div class="sm:w-2/3 text-center py-6">
+                <p class="text-sm text-blue-100 font-bold mb-2">
+                    © 2021 by Consult-ING
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>

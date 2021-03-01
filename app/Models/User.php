@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,6 +26,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -58,4 +58,19 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function mantenimientos(){return $this->belongstoMany(Mantenimiento::class,'mantenimientos')->withTimestamps();}
+    public function equipos(){return $this->belongstoMany(Equipo::class,'equipos')->withTimestamps();}
+
+
+    //eel navigation
+    public static function navigation(){
+        if (isset(auth()->user()->id)) {
+            $rol=auth()->user()->is_admin;
+            if (($rol==1)||($rol==2)) return 'admin';
+            if ($rol==0) return 'normal';
+        }else{
+            return 'guest';
+        }
+    }
 }
